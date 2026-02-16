@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     background: black;
     color: #d0e7ff;
@@ -13,16 +7,17 @@ body {
     cursor: none;
 }
 
-/* Cursor glow */
+/* Soft glowing cursor */
 .cursor-glow {
     position: fixed;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgba(0,180,255,0.3);
+    background: rgba(0,180,255,0.2);
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 100;
+    box-shadow: 0 0 20px 10px rgba(0,180,255,0.4);
     transition: top 0.05s, left 0.05s;
 }
 
@@ -49,7 +44,7 @@ canvas {
     margin: 5vh auto;
     padding: 40px;
     backdrop-filter: blur(30px);
-    background: rgba(15,20,35,0.75);
+    background: rgba(15,20,35,0.75);  /* Always constant */
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0,120,255,0.5);
     display: flex;
@@ -59,12 +54,12 @@ canvas {
     animation: pulse 2s infinite;
 }
 
-/* Terminal hover distortion */
+/* Remove hover effect entirely */
 .terminal:hover {
-    filter: hue-rotate(10deg) contrast(1.1);
+    filter: none;
 }
 
-/* Pulse effect */
+/* Pulse effect on terminal glow */
 @keyframes pulse {
     0%, 100% { box-shadow: 0 0 40px rgba(0,120,255,0.5); }
     50% { box-shadow: 0 0 70px rgba(0,180,255,0.7); }
