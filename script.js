@@ -112,15 +112,15 @@ window.onload = function() {
         terminal.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-    // Soft cursor glow
-    const cursorGlow = document.createElement('div');
-    cursorGlow.className = 'cursor-glow';
-    document.body.appendChild(cursorGlow);
+// Soft cursor glow
+const cursorGlow = document.createElement('div');
+cursorGlow.className = 'cursor-glow';
+document.body.appendChild(cursorGlow);
 
-    document.addEventListener('mousemove', e => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-    });
+document.addEventListener('mousemove', e => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+});
 
     // ==== AUDIO ====
     const audio=document.getElementById("ambient");
