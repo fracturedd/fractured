@@ -1,74 +1,90 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: #0d0d14;
-  color: white;
-  overflow: hidden;
+    background: radial-gradient(circle at center, #0b0f1a 0%, #03050a 100%);
+    color: #d0e7ff;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
 }
 
-#particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+/* Star canvas */
+#stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+/* Nebula animated overlay */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(120,0,255,0.15), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(0,120,255,0.15), transparent 60%);
+    animation: nebula 40s linear infinite;
+    z-index: -1;
+}
+
+@keyframes nebula {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 #intro {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #0d0d14;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fadeOut 1.2s ease forwards;
-  animation-delay: 2.5s;
-}
-
-#intro h1 {
-  font-size: 3rem;
-  letter-spacing: 3px;
-}
-
-#intro p {
-  opacity: 0.6;
-  margin-top: 10px;
-}
-
-#main {
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 3s;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card {
-  backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 40px 60px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #03050a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    animation: fadeOut 1.5s ease forwards;
+    animation-delay: 2s;
 }
 
 @keyframes fadeOut {
-  to {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.terminal {
     opacity: 0;
-    visibility: hidden;
-  }
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 2.5s;
+    width: 900px;
+    max-width: 95%;
+    margin: 5vh auto;
+    padding: 40px;
+    backdrop-filter: blur(18px);
+    background: rgba(15, 20, 35, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 120, 255, 0.2);
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+    to { opacity: 1; }
+}
+
+pre {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.section {
+    color: #5ecbff;
+}
+
+.highlight {
+    color: #ff6bff;
 }
