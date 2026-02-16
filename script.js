@@ -112,7 +112,7 @@ window.onload = function() {
         terminal.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-    // ==== SOFT CURSOR GLOW ====
+    // Soft cursor glow
     const cursorGlow = document.createElement('div');
     cursorGlow.className = 'cursor-glow';
     document.body.appendChild(cursorGlow);
