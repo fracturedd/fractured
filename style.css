@@ -1,24 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: black;
     color: #d0e7ff;
     font-family: "Courier New", monospace;
     overflow: hidden;
     height: 100vh;
-    cursor: none;
+    cursor: none; /* hide default cursor */
 }
 
-/* Soft glowing cursor */
+/* Glowing cursor with soft edges */
 .cursor-glow {
     position: fixed;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgba(0,180,255,0.2);
+    background: transparent; /* fully transparent inside */
     pointer-events: none;
     transform: translate(-50%, -50%);
-    z-index: 100;
-    box-shadow: 0 0 20px 10px rgba(0,180,255,0.4);
-    transition: top 0.05s, left 0.05s;
+    z-index: 9999;
+    box-shadow: 0 0 25px 15px rgba(0,180,255,0.5); /* soft glow */
+    transition: top 0.03s, left 0.03s;
 }
 
 /* Canvas layers */
@@ -44,7 +50,7 @@ canvas {
     margin: 5vh auto;
     padding: 40px;
     backdrop-filter: blur(30px);
-    background: rgba(15,20,35,0.75);  /* Always constant */
+    background-color: rgba(15,20,35,0.75);  /* always constant */
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0,120,255,0.5);
     display: flex;
@@ -54,9 +60,10 @@ canvas {
     animation: pulse 2s infinite;
 }
 
-/* Remove hover effect entirely */
+/* Remove hover effect completely */
 .terminal:hover {
-    filter: none;
+    filter: none !important;
+    background-color: rgba(15,20,35,0.75) !important;
 }
 
 /* Pulse effect on terminal glow */
