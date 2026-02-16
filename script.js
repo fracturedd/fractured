@@ -105,6 +105,7 @@ function typeWriter(){
 typeWriter();
 
 // ==== PARALLAX 3D ====
+const terminal = document.getElementById("terminal");
 document.addEventListener("mousemove",e=>{
     let x=(window.innerWidth/2 - e.pageX)/40;
     let y=(window.innerHeight/2 - e.pageY)/40;
@@ -113,14 +114,7 @@ document.addEventListener("mousemove",e=>{
 
 // ==== SOFT CURSOR GLOW ====
 const cursorGlow = document.createElement('div');
-cursorGlow.style.position = 'fixed';
-cursorGlow.style.width = '20px';
-cursorGlow.style.height = '20px';
-cursorGlow.style.borderRadius = '50%';
-cursorGlow.style.background = 'rgba(0,180,255,0.3)';
-cursorGlow.style.pointerEvents = 'none';
-cursorGlow.style.transform = 'translate(-50%, -50%)';
-cursorGlow.style.zIndex = '100';
+cursorGlow.className = 'cursor-glow';
 document.body.appendChild(cursorGlow);
 
 document.addEventListener('mousemove', e => {
