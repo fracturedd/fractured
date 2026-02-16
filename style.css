@@ -10,6 +10,24 @@ body {
     font-family: "Courier New", monospace;
     overflow: hidden;
     height: 100vh;
+    cursor: url(''), auto;
+}
+
+/* Add soft blue glow to cursor */
+body {
+    cursor: none;
+}
+body::after {
+    content: '';
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(0,180,255,0.3);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: top 0.05s, left 0.05s;
+    z-index: 100;
 }
 
 /* Canvas layers */
@@ -24,32 +42,10 @@ canvas {
 #galaxy { z-index: -5; }
 #stars { z-index: -4; }
 #shooting { z-index: -3; }
-#warpCanvas { z-index: -2; }
-#trail { z-index: -1; }
-
-/* Click to enter overlay */
-#clickEnter {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    color: #5ecbff;
-    cursor: pointer;
-    z-index: 10;
-    transition: opacity 1s ease;
-}
-
-#clickEnter h2 {
-    font-weight: 400;
-}
 
 /* Terminal */
 .terminal {
-    opacity: 0;
+    opacity: 1;
     position: relative;
     z-index: 5;
     max-width: 900px;
