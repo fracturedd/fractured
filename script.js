@@ -99,21 +99,22 @@ function startWarp() {
 // TYPEWRITER
 const text = `
 /\\_/\\
-( o.o )   fractured
+( o.o )   fractured@v4
  > ^ <
 
 [ USER ]
 ├─ user        : fractured
-├─ bio         : script developer & cheat developer
+├─ bio         : script developer & systems developer
 └─ description : exploit & game development
 
 [ LANGUAGES ]
 ├─ python
 ├─ lua
 ├─ javascript
-└─ c++
+├─ c++
+└─ bash
 
-[ FRACTURED'S FAVORITES ]
+[ PROJECTS ]
 ├─ Matcha      : Legit
 ├─ Matrix      : Legit
 ├─ Kicia       : HvH
