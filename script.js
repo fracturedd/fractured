@@ -2,16 +2,12 @@
 const galaxyCanvas = document.getElementById("galaxy");
 const starsCanvas = document.getElementById("stars");
 const shootingCanvas = document.getElementById("shooting");
-const warpCanvas = document.getElementById("warpCanvas");
-const trailCanvas = document.getElementById("trail");
 
 const galaxyCtx = galaxyCanvas.getContext("2d");
 const starsCtx = starsCanvas.getContext("2d");
 const shootingCtx = shootingCanvas.getContext("2d");
-const warpCtx = warpCanvas.getContext("2d");
-const trailCtx = trailCanvas.getContext("2d");
 
-[galaxyCanvas, starsCanvas, shootingCanvas, warpCanvas, trailCanvas].forEach(c=>{
+[galaxyCanvas, starsCanvas, shootingCanvas].forEach(c=>{
     c.width = window.innerWidth;
     c.height = window.innerHeight;
 });
@@ -72,51 +68,6 @@ function shootingStar(){
 }
 setInterval(shootingStar,4000);
 
-// ==== HYPERSPACE WARP ON CLICK ====
-const clickEnter = document.getElementById("clickEnter");
-const terminal = document.getElementById("terminal");
-clickEnter.addEventListener("click",()=>{
-    clickEnter.style.opacity=0;
-    startWarp();
-    setTimeout(()=>{
-        clickEnter.style.display="none";
-        terminal.style.opacity=1;
-        typeWriter();
-    },1500);
-});
-
-function startWarp(){
-    let lines=[];
-    for(let i=0;i<300;i++){
-        lines.push({
-            x:warpCanvas.width/2,
-            y:warpCanvas.height/2,
-            angle:Math.random()*Math.PI*2,
-            length:Math.random()*20
-        });
-    }
-    let frame=0;
-    let warp=setInterval(()=>{
-        warpCtx.fillStyle="rgba(0,0,0,0.2)";
-        warpCtx.fillRect(0,0,warpCanvas.width,warpCanvas.height);
-        lines.forEach(l=>{
-            let dx=Math.cos(l.angle)*l.length;
-            let dy=Math.sin(l.angle)*l.length;
-            warpCtx.beginPath();
-            warpCtx.moveTo(l.x,l.y);
-            warpCtx.lineTo(l.x+dx,l.y+dy);
-            warpCtx.strokeStyle="white";
-            warpCtx.stroke();
-            l.length+=15;
-        });
-        frame++;
-        if(frame>20){
-            clearInterval(warp);
-            warpCtx.clearRect(0,0,warpCanvas.width,warpCanvas.height);
-        }
-    },30);
-}
-
 // ==== TYPEWRITER ====
 const text=`
 /\\_/\\
@@ -151,32 +102,30 @@ function typeWriter(){
         setTimeout(typeWriter,8);
     }
 }
-
-// ==== NEON CURSOR TRAIL ====
-let trail = [];
-document.addEventListener("mousemove",e=>{
-    trail.push({x:e.clientX, y:e.clientY, alpha:1});
-});
-function animateTrail(){
-    trailCtx.clearRect(0,0,trailCanvas.width,trailCanvas.height);
-    for(let j=0;j<trail.length;j++){
-        let t=trail[j];
-        trailCtx.fillStyle=`rgba(0,255,255,${t.alpha})`;
-        trailCtx.beginPath();
-        trailCtx.arc(t.x,t.y,6,0,Math.PI*2);
-        trailCtx.fill();
-        t.alpha-=0.05;
-    }
-    trail=trail.filter(t=>t.alpha>0);
-    requestAnimationFrame(animateTrail);
-}
-animateTrail();
+typeWriter();
 
 // ==== PARALLAX 3D ====
 document.addEventListener("mousemove",e=>{
     let x=(window.innerWidth/2 - e.pageX)/40;
     let y=(window.innerHeight/2 - e.pageY)/40;
     terminal.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+// ==== SOFT CURSOR GLOW ====
+const cursorGlow = document.createElement('div');
+cursorGlow.style.position = 'fixed';
+cursorGlow.style.width = '20px';
+cursorGlow.style.height = '20px';
+cursorGlow.style.borderRadius = '50%';
+cursorGlow.style.background = 'rgba(0,180,255,0.3)';
+cursorGlow.style.pointerEvents = 'none';
+cursorGlow.style.transform = 'translate(-50%, -50%)';
+cursorGlow.style.zIndex = '100';
+document.body.appendChild(cursorGlow);
+
+document.addEventListener('mousemove', e => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
 });
 
 // ==== AUDIO ====
