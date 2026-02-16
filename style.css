@@ -10,15 +10,11 @@ body {
     font-family: "Courier New", monospace;
     overflow: hidden;
     height: 100vh;
-    cursor: url(''), auto;
-}
-
-/* Add soft blue glow to cursor */
-body {
     cursor: none;
 }
-body::after {
-    content: '';
+
+/* Cursor glow */
+.cursor-glow {
     position: fixed;
     width: 20px;
     height: 20px;
@@ -26,8 +22,8 @@ body::after {
     background: rgba(0,180,255,0.3);
     pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: top 0.05s, left 0.05s;
     z-index: 100;
+    transition: top 0.05s, left 0.05s;
 }
 
 /* Canvas layers */
@@ -55,16 +51,23 @@ canvas {
     backdrop-filter: blur(30px);
     background: rgba(15,20,35,0.75);
     border-radius: 20px;
-    box-shadow: 0 0 80px rgba(0,120,255,0.4);
+    box-shadow: 0 0 40px rgba(0,120,255,0.5);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 1s ease;
+    animation: pulse 2s infinite;
 }
 
-/* Hover distortion (black hole effect) */
+/* Terminal hover distortion */
 .terminal:hover {
     filter: hue-rotate(10deg) contrast(1.1);
+}
+
+/* Pulse effect */
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(0,120,255,0.5); }
+    50% { box-shadow: 0 0 70px rgba(0,180,255,0.7); }
 }
 
 /* Typewriter text */
@@ -90,10 +93,4 @@ button {
 button:hover {
     box-shadow: 0 0 25px rgba(0,120,255,0.8);
     transform: scale(1.05);
-}
-
-/* Galaxy rotation animation */
-@keyframes galaxySpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
