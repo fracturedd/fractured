@@ -1,37 +1,59 @@
-// ===== STAR BACKGROUND =====
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// STARFIELD
+const starCanvas = document.getElementById("stars");
+const starCtx = starCanvas.getContext("2d");
+starCanvas.width = window.innerWidth;
+starCanvas.height = window.innerHeight;
 
 let stars = [];
-
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 300; i++) {
     stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
+        x: Math.random() * starCanvas.width,
+        y: Math.random() * starCanvas.height,
+        size: Math.random() * 2,
         speed: Math.random() * 0.5
     });
 }
 
-function drawStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#ffffff";
+function animateStars() {
+    starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+    starCtx.fillStyle = "white";
     stars.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fill();
+        starCtx.fillRect(star.x, star.y, star.size, star.size);
         star.y += star.speed;
-        if (star.y > canvas.height) star.y = 0;
+        if (star.y > starCanvas.height) star.y = 0;
     });
-    requestAnimationFrame(drawStars);
+    requestAnimationFrame(animateStars);
 }
-drawStars();
+animateStars();
 
-// ===== TYPEWRITER CONTENT =====
+// SHOOTING STARS
+const shootingCanvas = document.getElementById("shooting");
+const shootingCtx = shootingCanvas.getContext("2d");
+shootingCanvas.width = window.innerWidth;
+shootingCanvas.height = window.innerHeight;
 
+function shootingStar() {
+    let x = Math.random() * shootingCanvas.width;
+    let y = 0;
+    let length = Math.random() * 80 + 20;
+
+    let interval = setInterval(() => {
+        shootingCtx.clearRect(0,0,shootingCanvas.width,shootingCanvas.height);
+        shootingCtx.beginPath();
+        shootingCtx.moveTo(x,y);
+        shootingCtx.lineTo(x+length,y+length);
+        shootingCtx.strokeStyle = "white";
+        shootingCtx.lineWidth = 2;
+        shootingCtx.stroke();
+        x += 15;
+        y += 15;
+        if (y > shootingCanvas.height) clearInterval(interval);
+    }, 30);
+}
+
+setInterval(shootingStar, 4000);
+
+// TYPEWRITER
 const text = `
 /\\_/\\
 ( o.o )   fractured@v4
@@ -57,15 +79,37 @@ const text = `
 `;
 
 let i = 0;
-const speed = 15;
 const content = document.getElementById("content");
 
 function typeWriter() {
     if (i < text.length) {
         content.innerHTML += text.charAt(i);
         i++;
-        setTimeout(typeWriter, speed);
+        setTimeout(typeWriter, 10);
     }
 }
 
 setTimeout(typeWriter, 2500);
+
+// PARALLAX
+const terminal = document.getElementById("terminal");
+
+document.addEventListener("mousemove", e => {
+    let x = (window.innerWidth / 2 - e.pageX) / 40;
+    let y = (window.innerHeight / 2 - e.pageY) / 40;
+    terminal.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+// AUDIO
+const audio = document.getElementById("ambient");
+const toggle = document.getElementById("audioToggle");
+
+toggle.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+        toggle.innerText = "🌌 Playing";
+    } else {
+        audio.pause();
+        toggle.innerText = "🌌 Ambient";
+    }
+});
