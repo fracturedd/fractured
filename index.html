@@ -1,103 +1,36 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fractured</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-    background: black;
-    color: #d0e7ff;
-    font-family: "Courier New", monospace;
-    overflow: hidden;
-    height: 100vh;
-}
+<!-- Background Layers -->
+<canvas id="galaxy"></canvas>
+<canvas id="stars"></canvas>
+<canvas id="shooting"></canvas>
+<canvas id="warpCanvas"></canvas>
+<canvas id="trail"></canvas>
 
-/* Canvas layers */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+<!-- Click-to-enter overlay -->
+<div id="clickEnter">
+    <h2>click to enter</h2>
+</div>
 
-#galaxy { z-index: -5; }
-#stars { z-index: -4; }
-#shooting { z-index: -3; }
-#warpCanvas { z-index: -2; }
-#trail { z-index: -1; }
+<!-- Terminal -->
+<div class="terminal" id="terminal">
+    <pre id="content"></pre>
+    <button id="audioToggle">🌌 Ambient</button>
+</div>
 
-/* Click to enter overlay */
-#clickEnter {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    color: #5ecbff;
-    cursor: pointer;
-    z-index: 10;
-    transition: opacity 1s ease;
-}
+<!-- Ambient audio -->
+<audio id="ambient" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b2f30.mp3?filename=deep-space-ambient-110624.mp3" type="audio/mpeg">
+</audio>
 
-#clickEnter h2 {
-    font-weight: 400;
-}
-
-/* Terminal */
-.terminal {
-    opacity: 0;
-    position: relative;
-    z-index: 5;
-    max-width: 900px;
-    width: 90%;
-    margin: 5vh auto;
-    padding: 40px;
-    backdrop-filter: blur(30px);
-    background: rgba(15,20,35,0.75);
-    border-radius: 20px;
-    box-shadow: 0 0 80px rgba(0,120,255,0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: transform 0.2s ease;
-}
-
-/* Hover distortion (black hole effect) */
-.terminal:hover {
-    filter: hue-rotate(10deg) contrast(1.1);
-}
-
-/* Typewriter text */
-pre {
-    font-size: 14px;
-    line-height: 1.6;
-    width: 100%;
-    overflow-x: auto;
-}
-
-/* Ambient button */
-button {
-    margin-top: 20px;
-    background: rgba(0,120,255,0.2);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    box-shadow: 0 0 25px rgba(0,120,255,0.8);
-    transform: scale(1.05);
-}
-
-/* Galaxy rotation animation */
-@keyframes galaxySpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+<script src="script.js"></script>
+</body>
+</html>
