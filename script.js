@@ -80,7 +80,7 @@ window.onload = function() {
 ├─ javascript
 └─ c++
 
-[ PROJECTS ]
+[ FRACTURED'S FAVORITES ]
 ├─ Matcha      : Legit
 ├─ Kicia       : HvH
 └─ Stoicism    : In Development
