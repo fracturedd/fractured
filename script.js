@@ -14,7 +14,7 @@ window.onload = function() {
         c.height = window.innerHeight;
     });
 
-    // ==== ROTATING GALAXY BACKGROUND ====
+    // ==== GALAXY ====
     function drawGalaxy() {
         galaxyCtx.clearRect(0,0,galaxyCanvas.width,galaxyCanvas.height);
         let gradient = galaxyCtx.createRadialGradient(
@@ -109,22 +109,18 @@ window.onload = function() {
     document.addEventListener("mousemove",e=>{
         let x=(window.innerWidth/2 - e.pageX)/40;
         let y=(window.innerHeight/2 - e.pageY)/40;
-        terminal.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+        terminal.style.transform=`translate(-50%, -50%) rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-// Remove old cursor if it exists
-document.querySelectorAll('.cursor-glow').forEach(c=>c.remove());
-
-// Add new cursor
-const cursorGlow = document.createElement('div');
-cursorGlow.className = 'cursor-glow';
-document.body.appendChild(cursorGlow);
-
-// Move cursor on mouse move
-document.addEventListener('mousemove', e => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top = e.clientY + 'px';
-});
+    // ==== CURSOR GLOW ====
+    document.querySelectorAll('.cursor-glow').forEach(c=>c.remove());
+    const cursorGlow = document.createElement('div');
+    cursorGlow.className = 'cursor-glow';
+    document.body.appendChild(cursorGlow);
+    document.addEventListener('mousemove', e => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    });
 
     // ==== AUDIO ====
     const audio=document.getElementById("ambient");
