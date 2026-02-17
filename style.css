@@ -32,11 +32,12 @@ canvas { position:fixed; top:0; left:0; width:100%; height:100%; }
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) rotateX(0deg) rotateY(0deg);
-    max-width: 1000px;    /* wider terminal */
-    width: 95%;
-    max-height: 90%;
-    padding: 40px 30px;   /* padding adjusted */
+    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
+    width: 95%;           /* almost full width */
+    max-width: 1200px;    /* super wide */
+    min-width: 600px;     /* ensures not too narrow on small screens */
+    max-height: 85vh;     /* leave some space from top/bottom */
+    padding: 40px 50px;
     backdrop-filter: blur(25px);
     background-color: rgba(15,20,35,0.95);
     border-radius: 20px;
@@ -45,7 +46,17 @@ canvas { position:fixed; top:0; left:0; width:100%; height:100%; }
     flex-direction: column;
     align-items: flex-start;
     animation: pulse 2s infinite;
-    overflow: hidden;     /* hide scroll */
+    overflow-y: auto;     /* allow scrolling only if absolutely necessary */
+}
+
+/* Pre text wraps nicely */
+pre {
+    font-size: 14px;
+    line-height: 1.6;
+    width: 100%;
+    white-space: pre-wrap;     /* wrap text lines */
+    word-break: break-word;     /* prevent long word overflow */
+    overflow-x: hidden;         /* remove horizontal scroll */
 }
 
 @keyframes pulse {
