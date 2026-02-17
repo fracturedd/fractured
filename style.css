@@ -13,7 +13,7 @@ body {
     cursor: none; /* hide default cursor */
 }
 
-/* Glowy cursor (solid orb) */
+/* Cursor: solid glowing orb */
 .cursor-glow {
     position: fixed;
     width: 25px;
@@ -22,8 +22,8 @@ body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background: rgba(0,180,255,0.8); /* solid neon color */
-    box-shadow: 0 0 30px 15px rgba(0,180,255,0.7); /* soft glow around it */
+    background: rgba(0,180,255,0.8); /* solid glow */
+    box-shadow: 0 0 30px 15px rgba(0,180,255,0.7); /* neon glow */
 }
 
 /* Canvas layers */
@@ -39,24 +39,31 @@ canvas {
 #stars { z-index: -4; }
 #shooting { z-index: -3; }
 
+/* Terminal */
 .terminal {
-    position: fixed;             /* fixed so it doesn’t move with scroll */
-    top: 50%;                    /* vertical center */
-    left: 50%;                   /* horizontal center */
-    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
     max-width: 600px;
     width: 90%;
     max-height: 80%;
     padding: 30px;
     backdrop-filter: blur(25px);
-    background-color: rgba(15,20,35,0.95); /* always dark */
+    background-color: rgba(15,20,35,0.95);
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0,120,255,0.5);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     animation: pulse 2s infinite;
-    overflow-y: auto;            /* scroll if too much text */
+    overflow-y: auto;
+}
+
+/* Terminal pulse effect */
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(0,120,255,0.5); }
+    50% { box-shadow: 0 0 70px rgba(0,180,255,0.7); }
 }
 
 /* Remove hover/focus effects */
