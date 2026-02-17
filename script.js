@@ -1,5 +1,5 @@
 window.onload = function() {
-    // ==== CANVAS SETUP ====
+    // ===== CANVAS SETUP =====
     const galaxyCanvas = document.getElementById("galaxy");
     const starsCanvas = document.getElementById("stars");
     const shootingCanvas = document.getElementById("shooting");
@@ -14,7 +14,7 @@ window.onload = function() {
         c.height = window.innerHeight;
     });
 
-    // ==== GALAXY ====
+    // ===== GALAXY BACKGROUND =====
     function drawGalaxy() {
         galaxyCtx.clearRect(0,0,galaxyCanvas.width,galaxyCanvas.height);
         let gradient = galaxyCtx.createRadialGradient(
@@ -29,7 +29,7 @@ window.onload = function() {
     }
     drawGalaxy();
 
-    // ==== STARFIELD ====
+    // ===== STARFIELD =====
     let stars = [];
     for(let i=0;i<300;i++){
         stars.push({
@@ -51,7 +51,7 @@ window.onload = function() {
     }
     animateStars();
 
-    // ==== SHOOTING STARS ====
+    // ===== SHOOTING STARS =====
     function shootingStar(){
         let x=Math.random()*shootingCanvas.width;
         let y=0;
@@ -70,7 +70,7 @@ window.onload = function() {
     }
     setInterval(shootingStar,4000);
 
-    // ==== TYPEWRITER ====
+    // ===== TYPEWRITER TEXT =====
     const text=`
 /\\_/\\
 ( o.o )   fractured@v4
@@ -78,7 +78,7 @@ window.onload = function() {
 
 [ USER ]
 ├─ user        : fractured
-├─ bio         : script developer & systems developer
+├─ bio         : script developer & cheat developer
 └─ description : exploit & game development
 
 [ LANGUAGES ]
@@ -105,28 +105,24 @@ window.onload = function() {
     }
     typeWriter();
 
-    // ==== PARALLAX 3D ====
+    // ===== PARALLAX 3D =====
     document.addEventListener("mousemove",e=>{
         let x=(window.innerWidth/2 - e.pageX)/40;
         let y=(window.innerHeight/2 - e.pageY)/40;
         terminal.style.transform=`translate(-50%, -50%) rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-// Remove all previous cursor elements
-document.querySelectorAll('.cursor-glow').forEach(c=>c.remove());
+    // ===== CURSOR GLOW =====
+    document.querySelectorAll('.cursor-glow').forEach(c=>c.remove());
+    const cursorGlow = document.createElement('div');
+    cursorGlow.className = 'cursor-glow';
+    document.body.appendChild(cursorGlow);
+    document.addEventListener('mousemove', e => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    });
 
-// Add new cursor
-const cursorGlow = document.createElement('div');
-cursorGlow.className = 'cursor-glow';
-document.body.appendChild(cursorGlow);
-
-// Move cursor on mouse move
-document.addEventListener('mousemove', e => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top = e.clientY + 'px';
-});
-
-    // ==== AUDIO ====
+    // ===== AUDIO =====
     const audio=document.getElementById("ambient");
     const toggle=document.getElementById("audioToggle");
     toggle.addEventListener("click",()=>{
@@ -134,7 +130,7 @@ document.addEventListener('mousemove', e => {
         else{ audio.pause(); toggle.innerText="🌌 Ambient"; }
     });
 
-    // ==== HANDLE RESIZE ====
+    // ===== HANDLE RESIZE =====
     window.addEventListener('resize', ()=>{
         [galaxyCanvas, starsCanvas, shootingCanvas].forEach(c=>{
             c.width = window.innerWidth;
