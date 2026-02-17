@@ -67,7 +67,7 @@ window.onload = function() {
   // Typewriter
   const text=`
 /\\_/\\
-( o.o )   fractured@v4
+( o.o )   fractured
  > ^ <
 
 [ USER ]
@@ -79,12 +79,10 @@ window.onload = function() {
 ├─ python
 ├─ lua
 ├─ javascript
-├─ c++
-└─ bash
+└─ c++
 
 [ PROJECTS ]
 ├─ Matcha      : Legit
-├─ Matrix      : Legit
 ├─ Kicia       : HvH
 └─ Stoicism    : In Development
 `;
