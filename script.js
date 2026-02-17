@@ -68,7 +68,6 @@ window.onload = function() {
   const text=`
 /\\_/\\
 ( o.o )   fractured
- > ^ <
 
 [ USER ]
 ├─ user        : fractured
