@@ -112,15 +112,18 @@ window.onload = function() {
         terminal.style.transform=`translate(-50%, -50%) rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-    // ===== CURSOR GLOW =====
-    document.querySelectorAll('.cursor-glow').forEach(c=>c.remove());
-    const cursorGlow = document.createElement('div');
-    cursorGlow.className = 'cursor-glow';
-    document.body.appendChild(cursorGlow);
-    document.addEventListener('mousemove', e => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-    });
+// Remove old cursor
+document.querySelectorAll('.cursor-glow').forEach(c => c.remove());
+
+// Add new tiny glowing cursor
+const cursorGlow = document.createElement('div');
+cursorGlow.className = 'cursor-glow';
+document.body.appendChild(cursorGlow);
+
+document.addEventListener('mousemove', e => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+});
 
     // ===== AUDIO =====
     const audio=document.getElementById("ambient");
