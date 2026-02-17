@@ -112,18 +112,19 @@ window.onload = function() {
         terminal.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
     });
 
-    // ==== SOFT CURSOR GLOW ====
-    const oldCursor = document.querySelector('.cursor-glow');
-    if(oldCursor) oldCursor.remove();
+// Remove old cursor if it exists
+document.querySelectorAll('.cursor-glow').forEach(c=>c.remove());
 
-    const cursorGlow = document.createElement('div');
-    cursorGlow.className = 'cursor-glow';
-    document.body.appendChild(cursorGlow);
+// Add new cursor
+const cursorGlow = document.createElement('div');
+cursorGlow.className = 'cursor-glow';
+document.body.appendChild(cursorGlow);
 
-    document.addEventListener('mousemove', e => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-    });
+// Move cursor on mouse move
+document.addEventListener('mousemove', e => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+});
 
     // ==== AUDIO ====
     const audio=document.getElementById("ambient");
